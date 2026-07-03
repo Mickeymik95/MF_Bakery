@@ -47,13 +47,13 @@
         }
 
         .wave-bottom .shape-fill {
+            fill: #f0f9ff;
+        }
 
         @media (min-width: 768px) {
             .wave-bottom svg {
                 height: 35px;
             }
-        }
-            fill: #f0f9ff;
         }
 
         /* Tipografi Mewah */
@@ -289,7 +289,6 @@
 
         window.semakLogin = () => {
             if(document.getElementById('pass-admin').value === 'mf123') {
-                localStorage.setItem('adminLoggedIn', 'true');
                 window.tutupAdminModal();
                 document.getElementById('panel-admin').classList.remove('hidden');
                 paparAdminProduk();
@@ -299,16 +298,9 @@
         };
 
         window.logkeluarAdmin = () => {
-            localStorage.removeItem('adminLoggedIn');
             window.tutupPanelAdmin();
             alert('Log keluar dari modul admin berjaya.');
         };
-
-        // Check login state on page load
-        if (localStorage.getItem('adminLoggedIn') === 'true') {
-            document.getElementById('panel-admin').classList.remove('hidden');
-            paparAdminProduk();
-        }
 
         const produkRef = ref(db, 'produk');
         onValue(produkRef, (snapshot) => {
@@ -389,7 +381,7 @@
                             <img src="${prod.gambar}" class="w-14 h-14 rounded-xl object-cover border">
                             <div>
                                 <h5 class="font-bold text-slate-800">${prod.nama}</h5>
-                                <span class="text-xs uppercase font-extrabold px-2 py-0.5 rounded ${prod.stok === 'ada' ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700'}">${prod.stok}</span>
+                                <span class="text-xs uppercase font-exabold px-2 py-0.5 rounded ${prod.stok === 'ada' ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700'}">${prod.stok}</span>
                             </div>
                         </div>
                         <div class="flex gap-2">
@@ -496,4 +488,3 @@
     </script>
 </body>
 </html>
-
